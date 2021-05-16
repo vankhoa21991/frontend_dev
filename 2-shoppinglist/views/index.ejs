@@ -8,45 +8,33 @@
   </head>
   <body>
     <header>
-      <a class="header-logo">LIST</a>
+      <a href="/" class="header-logo">LIST</a>
     </header>
     <div class="container">
       <div class="container-header">
         <h1>Shopping List</h1>
+        <a href="/new" class="new-button">+ Add item</a>
       </div>
       <div class="index-table-wrapper">
         <div class="table-head">
           <span class="id-column">ID</span>
           <span>Item</span>
         </div>
-        <!-- Use EJS to define the item constant -->
-        
-        
         <ul class="table-body">
-          <li>
-            <span class="id-column">1</span>
-            <span class="name-column">potatoes</span>
-          </li>
-          <li>
-            <span class="id-column">2</span>
-            <span class="name-column">carrots</span>
-          </li>
-          <li>
-            <span class="id-column">3</span>
-            <span class="name-column">onions</span>
-          </li>
-          <li>
-            <span class="id-column">
-              <!-- Display the id property of item -->
-              
-              
-            </span>
-            <span class="name-column">
-              <!-- Display the name property of item -->
-              
-              
-            </span>
-          </li>
+          <% items.forEach((item) => { %>
+            <li>
+              <div class="item-data">
+                <span class="id-column"><%= item.id %></span>
+                <span class="name-column"><%= item.name %></span>
+              </div>
+              <div class="item-menu">
+                <form action="/delete/<%= item.id %>" method="post">
+                  <input type="submit" value="Delete">
+                </form>
+                <a href="/edit/<%= item.id %>">Edit</a>
+              </div>
+            </li>
+          <% }) %>
         </ul>
       </div>
     </div>
